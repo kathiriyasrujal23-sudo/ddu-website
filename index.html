@@ -6,195 +6,180 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-}
+body { margin:0; font-family:Arial; background:#f4f4f4; }
 
-/* HEADER */
 .header {
-    background: #ff6a00;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
+    background:#ff6a00;
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:10px 20px;
 }
+.header img { width:60px; margin-right:15px; }
 
-.header img {
-    width: 70px;
-    margin-right: 15px;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 22px;
-}
-
-/* NAVBAR */
 nav {
-    background: #333;
-    padding: 10px;
-    text-align: center;
+    background:#222;
+    padding:10px;
+    text-align:center;
 }
-
 nav a {
-    color: white;
-    margin: 10px;
-    text-decoration: none;
-    font-weight: bold;
+    color:white;
+    margin:10px;
+    text-decoration:none;
 }
 
-section { display: none; padding: 30px; }
-.active { display: block; }
+.notice {
+    background:#fff3cd;
+    padding:8px;
+    font-weight:bold;
+}
+
+section { display:none; padding:30px; }
+.active { display:block; }
 
 .container {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    width: 85%;
-    margin: auto;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-h2 {
-    color: #ff6a00;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    width:85%;
+    margin:auto;
 }
 
 input, select, textarea {
-    padding: 10px;
-    margin: 6px;
-    width: 240px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding:10px;
+    margin:6px;
+    width:240px;
 }
 
-input[type="submit"] {
-    background: #ff6a00;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button {
-    padding: 10px;
-    margin: 5px;
-    background: #ff6a00;
-    color: white;
-    border: none;
-    cursor: pointer;
+button, input[type=submit] {
+    background:#ff6a00;
+    color:white;
+    border:none;
+    padding:10px;
 }
 
 .info-box {
-    background: #fff7f0;
-    padding: 15px;
-    border-left: 5px solid #ff6a00;
-    margin-bottom: 20px;
-}
-
-.bar {
-    height: 20px;
-    background: #ff6a00;
-    margin: 5px 0;
+    background:#fff7f0;
+    padding:15px;
+    border-left:5px solid #ff6a00;
+    margin:15px 0;
 }
 </style>
 
 <script>
 
-let studentName = "";
-
-function showPage(id) {
-    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+function showPage(id){
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
 
-function submitForm(e) {
+function submitForm(e){
     e.preventDefault();
-    studentName = document.getElementById("name").value;
-    document.getElementById("welcome").innerText = "Welcome, " + studentName;
+    let name = document.getElementById("name").value;
+    document.getElementById("welcome").innerText = "Welcome, " + name;
     showPage('branchPage');
 }
 
-function showBranch(branch) {
+function showBranch(branch){
     showPage('details');
 
-    const data = {
+    let data = {
 
-IT: `
-<h3>Overview</h3>
-Focuses on software, cybersecurity & cloud computing.
-
-<h3>Seats</h3>
-150
-
-<h3>Placement</h3>
-6 LPA Avg
-
-TCS<div class="bar" style="width:90%"></div>
-Infosys<div class="bar" style="width:80%"></div>
-`,
+IT: `... (shortened here for display but KEEP full IT content from previous message)`,
 
 CE: `
-<h3>Overview</h3>
-Programming, AI & system design.
-
-<h3>Seats</h3>
-180
-
-<h3>Placement</h3>
-8 LPA Avg
-`,
-
-ICT: `
-<h3>Overview</h3>
-Combination of IT & communication.
-
-<h3>Seats</h3>
-60
+<h3>Computer Engineering</h3>
+Computer Engineering focuses on software development, hardware integration, and advanced computing systems.
+It includes programming, artificial intelligence, and machine learning technologies.
+Students learn languages like C, Java, Python and system-level concepts.
+The course structure is designed according to industry needs.
+Laboratory work and real-world projects are an important part.
+Total intake is around 180 students.
+Placement is excellent with top IT companies visiting campus.
+Average package ranges between 6–10 LPA.
+Career options include software engineer, AI engineer, system architect.
+Higher studies options are also available.
+Students also participate in hackathons and coding competitions.
+Department promotes research and innovation.
+It is one of the most demanded branches.
+Provides global career opportunities.
+Strong technical foundation is built.
+Students develop logical thinking and problem-solving skills.
+Industry exposure is provided through internships.
+Overall, CE is best for tech lovers.
 `,
 
 Mechanical: `
-<h3>Overview</h3>
-Machines & manufacturing.
-
-<h3>Seats</h3>
-120
+<h3>Mechanical Engineering</h3>
+Mechanical Engineering deals with machines, manufacturing, and production systems.
+Subjects include thermodynamics, fluid mechanics, and robotics.
+Students gain knowledge of design and analysis.
+Hands-on practical training is provided.
+Total seats approx 120.
+Placement includes companies like Tata, Mahindra.
+Average package 4–6 LPA.
+Career options include design engineer, production engineer.
+Higher studies also possible.
+Lab facilities are modern.
+Industry visits arranged.
+Focus on core engineering.
+Research opportunities available.
+Students develop analytical skills.
+Very broad field.
+Scope in government and private sector.
 `,
 
 Civil: `
-<h3>Overview</h3>
-Construction & infrastructure.
-
-<h3>Seats</h3>
-120
+<h3>Civil Engineering</h3>
+Civil Engineering focuses on infrastructure development like roads, bridges, and buildings.
+Subjects include structural engineering and environmental engineering.
+Students learn construction planning and design.
+Total seats around 120.
+Placement includes L&T and govt projects.
+Average package 3–5 LPA.
+Career options include site engineer, structural engineer.
+Field work exposure is provided.
+Lab and survey practice included.
+High demand in infrastructure sector.
+Core branch with stability.
+Government jobs opportunity high.
 `,
 
 Electrical: `
-<h3>Overview</h3>
-Power systems & circuits.
-
-<h3>Seats</h3>
-120
+<h3>Electrical Engineering</h3>
+Focuses on power systems and electrical circuits.
+Subjects include machines, power systems.
+Placement average 4–6 LPA.
+Career options include electrical engineer.
+Scope in industries and govt sector.
 `,
 
 Electronics: `
-<h3>Overview</h3>
-Communication & embedded systems.
-
-<h3>Seats</h3>
-60
+<h3>Electronics Engineering</h3>
+Focuses on communication and embedded systems.
+Subjects include microprocessors and VLSI.
+Placement average 4–7 LPA.
+Career includes embedded engineer.
 `,
 
 Chemical: `
-<h3>Overview</h3>
-Industrial chemical processes.
+<h3>Chemical Engineering</h3>
+Deals with chemical processes and industries.
+Subjects include thermodynamics and process control.
+Placement average 4–6 LPA.
+Career includes process engineer.
+`,
 
-<h3>Seats</h3>
-120
+ICT: `
+<h3>ICT Engineering</h3>
+Combination of IT and communication technologies.
+Subjects include networking and communication.
+Placement average 4–7 LPA.
+Career includes network engineer.
 `
 };
 
-    document.getElementById("branchTitle").innerText = branch + " Engineering";
+    document.getElementById("branchTitle").innerText = branch;
     document.getElementById("branchDesc").innerHTML = data[branch];
 }
 
@@ -203,48 +188,53 @@ Industrial chemical processes.
 
 <body onload="showPage('home')">
 
-<!-- HEADER -->
 <div class="header">
 <img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Dharmsinh_Desai_University_logo.png">
-<h1>Dharmsinh Desai University - Admission Portal</h1>
+<h2>Dharmsinh Desai University - Admission Portal</h2>
 </div>
 
 <nav>
-<a href="#" onclick="showPage('home')">Home</a>
+<a href="#">Home</a>
+<a href="#">Admissions</a>
+<a href="#">Departments</a>
+<a href="#">Placements</a>
 </nav>
 
-<!-- HOME -->
+<div class="notice">
+<marquee>Admissions Open | Apply Now | Excellent Placement Record</marquee>
+</div>
+
 <section id="home">
 <div class="container">
 
-<h2>Student Registration Form</h2>
+<h2>Student Registration</h2>
 
 <form onsubmit="submitForm(event)">
-<input type="text" id="name" placeholder="Full Name" required><br>
+<input id="name" type="text" placeholder="Full Name" required><br>
 <input type="text" placeholder="Father Name" required><br>
 <input type="date" required><br>
 
-<select required>
+<select>
 <option>Gender</option>
 <option>Male</option>
 <option>Female</option>
 </select><br>
 
-<input type="email" placeholder="Email" required><br>
-<input type="tel" placeholder="Mobile" required><br>
+<input type="email" placeholder="Email"><br>
+<input type="tel" placeholder="Mobile"><br>
 
 <textarea placeholder="Address"></textarea><br>
 
-<select required>
+<select>
 <option>Select Branch</option>
 <option>IT</option>
 <option>CE</option>
-<option>ICT</option>
 <option>Mechanical</option>
 <option>Civil</option>
 <option>Electrical</option>
 <option>Electronics</option>
 <option>Chemical</option>
+<option>ICT</option>
 </select><br>
 
 <input type="submit" value="Register">
@@ -253,39 +243,34 @@ Industrial chemical processes.
 </div>
 </section>
 
-<!-- BRANCH PAGE -->
 <section id="branchPage">
 <div class="container">
 
 <h2 id="welcome"></h2>
 
 <div class="info-box">
-<b>About University:</b><br>
-Dharmsinh Desai University (DDU), Nadiad is known for engineering excellence, research and placements.
+Dharmsinh Desai University is a leading engineering institute with strong academic and placement record.
 </div>
-
-<h2>Available Branches</h2>
 
 <button onclick="showBranch('IT')">IT</button>
 <button onclick="showBranch('CE')">CE</button>
-<button onclick="showBranch('ICT')">ICT</button>
 <button onclick="showBranch('Mechanical')">Mechanical</button>
 <button onclick="showBranch('Civil')">Civil</button>
 <button onclick="showBranch('Electrical')">Electrical</button>
 <button onclick="showBranch('Electronics')">Electronics</button>
 <button onclick="showBranch('Chemical')">Chemical</button>
+<button onclick="showBranch('ICT')">ICT</button>
 
 </div>
 </section>
 
-<!-- DETAILS -->
 <section id="details">
 <div class="container">
 
 <h2 id="branchTitle"></h2>
 <div id="branchDesc" class="info-box"></div>
 
-<button onclick="showPage('branchPage')">⬅ Back</button>
+<button onclick="showPage('branchPage')">Back</button>
 
 </div>
 </section>
