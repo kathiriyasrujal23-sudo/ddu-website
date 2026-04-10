@@ -9,17 +9,17 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    background: #f4f4f4;
 }
 
 nav {
-    background: #1a1a1a;
+    background: #ff6a00;
     padding: 15px;
     text-align: center;
 }
 
 nav a {
-    color: #fff;
+    color: white;
     margin: 15px;
     text-decoration: none;
     font-weight: bold;
@@ -31,67 +31,149 @@ section { display: none; padding: 30px; }
 .container {
     background: white;
     padding: 25px;
-    border-radius: 12px;
+    border-radius: 10px;
     width: 85%;
     margin: auto;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #ff6a00;
 }
 
 input, select, textarea {
     padding: 10px;
     margin: 6px;
     width: 240px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 input[type="submit"] {
-    background: #4ca1af;
+    background: #ff6a00;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 button {
-    padding: 10px 15px;
-    margin: 10px;
-    background: #2c3e50;
+    padding: 10px;
+    margin: 6px;
+    background: #ff6a00;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.info-box {
+    background: #fff7f0;
+    padding: 15px;
+    border-left: 5px solid #ff6a00;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.bar {
+    height: 20px;
+    background: #ff6a00;
+    margin: 5px 0;
 }
 </style>
 
 <script>
 
-// Page switch
+let studentName = "";
+
 function showPage(id) {
     document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
 
-// FORM SUBMIT → GO TO BRANCH PAGE
 function submitForm(event) {
-    event.preventDefault(); // stop reload
+    event.preventDefault();
+
+    studentName = document.getElementById("name").value;
+
     alert("Registration Successful!");
+
+    document.getElementById("welcome").innerText = "Welcome, " + studentName;
+
     showPage('branchPage');
 }
 
-// SHOW BRANCH DETAILS
 function showBranch(branch) {
     showPage('details');
 
     const data = {
-        Civil: "Civil Engineering deals with construction, infrastructure, roads and bridges.",
-        IT: "Information Technology focuses on software, AI, cloud computing, and cybersecurity. It plays a major role in modern industries.", 
-        CE: "Computer Engineering focuses on programming, system design, and advanced computing technologies.",
-        ICT: "ICT combines communication technologies with IT including networking and data systems.",
-        Chemical: "Chemical Engineering focuses on industrial processes, chemical production and manufacturing.",
-        Mechanical: "Mechanical Engineering deals with machines, robotics, thermodynamics and manufacturing systems.",
-        Electrical: "Electrical Engineering focuses on power systems, circuits and electrical machines.",
-        Electronics: "Electronics Engineering focuses on communication systems, embedded systems and devices."
-    };
 
-    document.getElementById("branchTitle").innerText = branch + " Engineering";
-    document.getElementById("branchDesc").innerText = data[branch];
+IT: `
+<h3>Overview</h3>
+Information Technology focuses on software and cybersecurity.
+
+<h3>Total Seats</h3>
+150
+
+<h3>Placement</h3>
+Average: 6 LPA
+
+<h3>Placement Chart</h3>
+TCS<div class="bar" style="width:90%"></div>
+Infosys<div class="bar" style="width:80%"></div>
+Wipro<div class="bar" style="width:70%"></div>
+`,
+
+CE: `
+<h3>Overview</h3>
+Computer Engineering focuses on AI and programming.
+
+<h3>Total Seats</h3>
+180
+
+<h3>Placement</h3>
+Average: 8 LPA
+
+<h3>Placement Chart</h3>
+TCS<div class="bar" style="width:85%"></div>
+Infosys<div class="bar" style="width:75%"></div>
+Startups<div class="bar" style="width:65%"></div>
+`,
+
+Mechanical: `
+<h3>Overview</h3>
+Mechanical Engineering deals with machines.
+
+<h3>Total Seats</h3>
+120
+
+<h3>Placement</h3>
+Average: 5 LPA
+
+<h3>Placement Chart</h3>
+Tata<div class="bar" style="width:80%"></div>
+Mahindra<div class="bar" style="width:70%"></div>
+`,
+
+Civil: `
+<h3>Overview</h3>
+Civil Engineering deals with construction.
+
+<h3>Total Seats</h3>
+120
+
+<h3>Placement</h3>
+Average: 4 LPA
+
+<h3>Placement Chart</h3>
+L&T<div class="bar" style="width:75%"></div>
+Govt<div class="bar" style="width:65%"></div>
+`
+};
+
+    document.getElementById("branchTitle").innerText = branch;
+    document.getElementById("branchDesc").innerHTML = data[branch];
 }
 
 </script>
@@ -100,63 +182,50 @@ function showBranch(branch) {
 <body onload="showPage('home')">
 
 <nav>
-<a href="#" onclick="showPage('home')">Home</a>
+<a href="#">DDU Portal</a>
 </nav>
 
-<!-- HOME (FORM) -->
 <section id="home">
 <div class="container">
 
-<h1>DDU Student Registration</h1>
+<h1>Student Registration</h1>
 
 <form onsubmit="submitForm(event)">
-<input type="text" placeholder="Full Name" required><br>
-<input type="text" placeholder="Father's Name" required><br>
-<input type="date" required><br>
-
-<select required>
-<option>Gender</option>
-<option>Male</option>
-<option>Female</option>
-</select><br>
-
+<input type="text" id="name" placeholder="Full Name" required><br>
 <input type="email" placeholder="Email" required><br>
-<input type="tel" placeholder="Mobile Number" required><br>
-
-<textarea placeholder="Address" required></textarea><br>
-
-<input type="submit" value="Submit Registration">
+<input type="submit" value="Register">
 </form>
 
 </div>
 </section>
 
-<!-- BRANCH PAGE -->
 <section id="branchPage">
 <div class="container">
 
-<h1>Select Your Branch</h1>
+<h1 id="welcome"></h1>
 
-<button onclick="showBranch('Civil')">Civil</button>
+<div class="info-box">
+<b>Dharmsinh Desai University</b><br>
+Top engineering university with excellent placement.
+</div>
+
+<h2>Select Branch</h2>
+
 <button onclick="showBranch('IT')">IT</button>
 <button onclick="showBranch('CE')">CE</button>
-<button onclick="showBranch('ICT')">ICT</button>
-<button onclick="showBranch('Chemical')">Chemical</button>
 <button onclick="showBranch('Mechanical')">Mechanical</button>
-<button onclick="showBranch('Electrical')">Electrical</button>
-<button onclick="showBranch('Electronics')">Electronics</button>
+<button onclick="showBranch('Civil')">Civil</button>
 
 </div>
 </section>
 
-<!-- DETAILS -->
 <section id="details">
 <div class="container">
 
 <h1 id="branchTitle"></h1>
-<p id="branchDesc"></p>
+<div id="branchDesc" class="info-box"></div>
 
-<button onclick="showPage('branchPage')">⬅ Back</button>
+<button onclick="showPage('branchPage')">Back</button>
 
 </div>
 </section>
