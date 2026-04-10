@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +17,7 @@ nav {
     background: #ff6a00;
     padding: 15px;
     text-align: center;
-}
-
-nav a {
     color: white;
-    margin: 15px;
-    text-decoration: none;
     font-weight: bold;
 }
 
@@ -35,19 +31,16 @@ section { display: none; padding: 30px; }
     width: 85%;
     margin: auto;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-h1, h2 {
-    color: #ff6a00;
-}
+h1, h2 { color: #ff6a00; }
 
 input, select, textarea {
     padding: 10px;
     margin: 6px;
     width: 240px;
-    border-radius: 5px;
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 input[type="submit"] {
@@ -86,6 +79,7 @@ button {
 <script>
 
 let studentName = "";
+let selectedBranch = "";
 
 function showPage(id) {
     document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
@@ -96,10 +90,12 @@ function submitForm(event) {
     event.preventDefault();
 
     studentName = document.getElementById("name").value;
+    selectedBranch = document.getElementById("branch").value;
+
+    document.getElementById("welcome").innerText =
+        "Welcome, " + studentName + " (" + selectedBranch + ")";
 
     alert("Registration Successful!");
-
-    document.getElementById("welcome").innerText = "Welcome, " + studentName;
 
     showPage('branchPage');
 }
@@ -111,64 +107,59 @@ function showBranch(branch) {
 
 IT: `
 <h3>Overview</h3>
-Information Technology focuses on software and cybersecurity.
+Information Technology focuses on software & cybersecurity.
 
-<h3>Total Seats</h3>
+<h3>Seats</h3>
 150
 
 <h3>Placement</h3>
-Average: 6 LPA
+Avg: 6 LPA
 
-<h3>Placement Chart</h3>
+<h3>Chart</h3>
 TCS<div class="bar" style="width:90%"></div>
 Infosys<div class="bar" style="width:80%"></div>
-Wipro<div class="bar" style="width:70%"></div>
 `,
 
 CE: `
 <h3>Overview</h3>
-Computer Engineering focuses on AI and programming.
+Computer Engineering focuses on AI & programming.
 
-<h3>Total Seats</h3>
+<h3>Seats</h3>
 180
 
 <h3>Placement</h3>
-Average: 8 LPA
+Avg: 8 LPA
 
-<h3>Placement Chart</h3>
+<h3>Chart</h3>
 TCS<div class="bar" style="width:85%"></div>
-Infosys<div class="bar" style="width:75%"></div>
-Startups<div class="bar" style="width:65%"></div>
 `,
 
 Mechanical: `
 <h3>Overview</h3>
 Mechanical Engineering deals with machines.
 
-<h3>Total Seats</h3>
+<h3>Seats</h3>
 120
 
 <h3>Placement</h3>
-Average: 5 LPA
+Avg: 5 LPA
 
-<h3>Placement Chart</h3>
+<h3>Chart</h3>
 Tata<div class="bar" style="width:80%"></div>
-Mahindra<div class="bar" style="width:70%"></div>
 `,
 
 Civil: `
 <h3>Overview</h3>
 Civil Engineering deals with construction.
 
-<h3>Total Seats</h3>
+<h3>Seats</h3>
 120
 
 <h3>Placement</h3>
-Average: 4 LPA
+Avg: 4 LPA
 
-<h3>Placement Chart</h3>
+<h3>Chart</h3>
 L&T<div class="bar" style="width:75%"></div>
-Govt<div class="bar" style="width:65%"></div>
 `
 };
 
@@ -181,10 +172,9 @@ Govt<div class="bar" style="width:65%"></div>
 
 <body onload="showPage('home')">
 
-<nav>
-<a href="#">DDU Portal</a>
-</nav>
+<nav>DDU Portal</nav>
 
+<!-- HOME -->
 <section id="home">
 <div class="container">
 
@@ -192,13 +182,39 @@ Govt<div class="bar" style="width:65%"></div>
 
 <form onsubmit="submitForm(event)">
 <input type="text" id="name" placeholder="Full Name" required><br>
+<input type="text" placeholder="Father's Name" required><br>
+<input type="date" required><br>
+
+<select required>
+<option>Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select><br>
+
 <input type="email" placeholder="Email" required><br>
+<input type="tel" placeholder="Mobile Number" required><br>
+
+<textarea placeholder="Address" required></textarea><br>
+
+<select id="branch" required>
+<option>Select Branch</option>
+<option>IT</option>
+<option>CE</option>
+<option>Mechanical</option>
+<option>Civil</option>
+</select><br>
+
+<input type="number" placeholder="12th %" required><br>
+<input type="number" placeholder="Entrance Rank" required><br>
+
 <input type="submit" value="Register">
 </form>
 
 </div>
 </section>
 
+<!-- BRANCH PAGE -->
 <section id="branchPage">
 <div class="container">
 
@@ -206,10 +222,10 @@ Govt<div class="bar" style="width:65%"></div>
 
 <div class="info-box">
 <b>Dharmsinh Desai University</b><br>
-Top engineering university with excellent placement.
+Top engineering university with strong placement record.
 </div>
 
-<h2>Select Branch</h2>
+<h2>Explore Branches</h2>
 
 <button onclick="showBranch('IT')">IT</button>
 <button onclick="showBranch('CE')">CE</button>
@@ -219,13 +235,14 @@ Top engineering university with excellent placement.
 </div>
 </section>
 
+<!-- DETAILS -->
 <section id="details">
 <div class="container">
 
 <h1 id="branchTitle"></h1>
 <div id="branchDesc" class="info-box"></div>
 
-<button onclick="showPage('branchPage')">Back</button>
+<button onclick="showPage('branchPage')">⬅ Back</button>
 
 </div>
 </section>
