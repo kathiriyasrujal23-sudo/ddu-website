@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DDU Info Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+}
+
+nav {
+    background: #1a1a1a;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: #f1f1f1;
+    margin: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00d4ff;
+}
+
+section {
+    display: none;
+    padding: 30px;
+}
+
+.active {
+    display: block;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 85%;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.logo {
+    width: 110px;
+    margin-bottom: 10px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+input, select, textarea {
+    padding: 10px;
+    margin: 6px;
+    width: 240px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #4ca1af;
+}
+
+input[type="submit"] {
+    background: #4ca1af;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+    background: #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+tr:hover {
+    background: #f2f2f2;
+    cursor: pointer;
+    transition: 0.2s;
+}
+</style>
+
+<script>
+function showPage(id) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+function showBranch(branch) {
+    showPage('details');
+
+    const data = {
+        Civil: "Civil Engineering focuses on construction, roads, bridges, buildings and infrastructure.",
+        IT: "Information Technology focuses on software, networking, and cybersecurity.",
+        CE: "Computer Engineering focuses on programming, AI, and hardware.",
+        ICT: "ICT combines IT and communication technologies.",
+        Chemical: "Chemical Engineering focuses on industrial chemical processes.",
+        Mechanical: "Mechanical Engineering focuses on machines, robotics, and manufacturing.",
+        Electrical: "Electrical Engineering focuses on power systems and circuits.",
+        Electronics: "Electronics Engineering focuses on devices and communication systems."
+    };
+
+    document.getElementById("branchTitle").innerText = branch + " Engineering";
+    document.getElementById("branchDesc").innerText = data[branch];
+}
+</script>
+
+</head>
+
+<body onload="showPage('home')">
+
+<nav>
+<a href="#" onclick="showPage('home')">Home</a>
+<a href="#" onclick="showPage('branches')">Branches</a>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+<div class="container">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Dharmsinh_Desai_University_logo.png" class="logo" alt="DDU Logo">
+
+<h1>Welcome to Dharmsinh Desai University</h1>
+
+<p><b>Established:</b> 1968</p>
+<p><b>Achievements:</b> NAAC Accredited, Excellent Placement, Research Excellence</p>
+
+<h2>Student Registration</h2>
+
+<form>
+<input type="text" placeholder="Full Name" required><br>
+<input type="text" placeholder="Father's Name" required><br>
+<input type="date" required><br>
+
+<select required>
+<option>Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select><br>
+
+<input type="email" placeholder="Email" required><br>
+<input type="tel" placeholder="Mobile Number" required><br>
+
+<textarea placeholder="Address" rows="3" required></textarea><br>
+
+<select required>
+<option>Select Branch</option>
+<option>Civil</option>
+<option>IT</option>
+<option>CE</option>
+<option>ICT</option>
+<option>Chemical</option>
+<option>Mechanical</option>
+<option>Electrical</option>
+<option>Electronics</option>
+</select><br>
+
+<input type="number" placeholder="12th Percentage" required><br>
+<input type="number" placeholder="Entrance Rank" required><br>
+
+<input type="submit" value="Submit Registration">
+</form>
+
+</div>
+</section>
+
+<!-- BRANCHES -->
+<section id="branches">
+<div class="container">
+<h1>B.Tech Branch Seats</h1>
+
+<table>
+<tr><th>Branch</th><th>Seats</th></tr>
+
+<tr onclick="showBranch('Civil')"><td>Civil</td><td>120</td></tr>
+<tr onclick="showBranch('IT')"><td>IT</td><td>150</td></tr>
+<tr onclick="showBranch('CE')"><td>CE</td><td>180</td></tr>
+<tr onclick="showBranch('ICT')"><td>ICT</td><td>60</td></tr>
+<tr onclick="showBranch('Chemical')"><td>Chemical</td><td>120</td></tr>
+<tr onclick="showBranch('Mechanical')"><td>Mechanical</td><td>120</td></tr>
+<tr onclick="showBranch('Electrical')"><td>Electrical</td><td>120</td></tr>
+<tr onclick="showBranch('Electronics')"><td>Electronics</td><td>60</td></tr>
+
+</table>
+</div>
+</section>
+
+<!-- DETAILS -->
+<section id="details">
+<div class="container">
+<h1 id="branchTitle">Branch</h1>
+<p id="branchDesc">Click a branch to see details.</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align:center; padding:10px; color:white;">
+© 2026 DDU Info Portal | Designed for Project
+</footer>
+
+</body>
+</html>
