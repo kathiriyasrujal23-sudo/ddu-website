@@ -12,13 +12,25 @@ body { margin:0; font-family:Arial; background:#f5f5f5; }
 .header {
     background:#f04e2a;
     color:white;
-    padding:12px;
+    padding:10px;
     display:flex;
     align-items:center;
 }
-.header img { width:50px; margin-right:10px; }
+.logo {
+    width:45px;
+    height:45px;
+    background:black;
+    color:white;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-right:10px;
+    font-size:20px;
+}
+.header h2 { margin:0; }
 
-/* NAVBAR */
+/* NAV */
 nav {
     background:#222;
     padding:10px;
@@ -35,14 +47,13 @@ nav a {
 section { display:none; padding:20px; }
 .active { display:block; }
 
-/* BOX */
 .container {
     background:white;
     padding:20px;
     border-radius:10px;
 }
 
-/* INPUT */
+/* FORM */
 input, select {
     padding:10px;
     margin:5px;
@@ -57,20 +68,19 @@ button, input[type=submit] {
     margin:5px;
 }
 
-/* LAB STYLE */
+/* LAB */
 .lab {
     border-top:1px solid #ccc;
     padding:10px 0;
     color:#f04e2a;
 }
 
-/* FACULTY TAG */
+/* TAG */
 .tag {
     background:#f04e2a;
     color:white;
     padding:6px 10px;
     display:inline-block;
-    margin-top:10px;
 }
 </style>
 
@@ -91,149 +101,32 @@ function showBranch(branch){
     showPage('details');
 
     let data = {
-
-IT: `
-<h3>Information Technology</h3>
-
-<div class="lab">Computer Programming Lab</div>
-<div class="lab">Advanced Computing Lab</div>
-<div class="lab">Microprocessor Lab</div>
-<div class="lab">IoT & Networking Lab</div>
-<div class="lab">App Development Lab</div>
-<div class="lab">Software Development Lab</div>
-<div class="lab">Web Development Lab</div>
-
-<img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232" width="100%">
-
-<div class="tag">Faculty Members</div>
-
-<p>
-IT branch is one of the most demanding fields in engineering.
-It focuses on software development, cloud computing and cybersecurity.
-Students learn programming languages like C, Java and Python.
-Modern labs are equipped with latest systems.
-Department organizes hackathons and workshops regularly.
-Strong placement support is provided.
-Students get internship opportunities in top companies.
-Industry exposure is given through live projects.
-Faculty members are highly qualified and experienced.
-They guide students in academics and research.
-Department supports innovation and startups.
-Overall development of students is ensured.
-</p>
-
-<div class="container">
-<b>Total Seats:</b> 150 <br>
-<b>Placement:</b> 90% <br>
-<b>Average Package:</b> 6 LPA
-</div>
-`,
-
-CE: `
-<h3>Computer Engineering</h3>
-
+IT: `<h3>Information Technology</h3>
 <div class="lab">Programming Lab</div>
-<div class="lab">Data Structure Lab</div>
-<div class="lab">AI & ML Lab</div>
-<div class="lab">Networking Lab</div>
+<div class="lab">Advanced Lab</div>
+<div class="lab">IoT Lab</div>
+<img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232" width="100%">
+<div class="tag">Faculty Members</div>
+<p>IT branch focuses on software, AI and placement.</p>
+<div><b>Seats:</b>150 | <b>Placement:</b>90% | <b>Package:</b>6 LPA</div>`,
 
+CE: `<h3>Computer Engineering</h3>
+<div class="lab">DS Lab</div>
+<div class="lab">AI Lab</div>
 <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" width="100%">
-
 <div class="tag">Faculty Members</div>
+<p>CE focuses on programming and ML.</p>
+<div><b>Seats:</b>180 | <b>Placement:</b>92%</div>`,
 
-<p>
-Computer Engineering focuses on software and hardware integration.
-Students learn machine learning and artificial intelligence.
-Labs are modern and well equipped.
-Placement is very strong.
-Students are recruited by top MNC companies.
-Faculty provides project guidance and mentorship.
-Innovation and coding culture is strong.
-Students participate in competitions and hackathons.
-</p>
-
-<div class="container">
-<b>Total Seats:</b> 180 <br>
-<b>Placement:</b> 92% <br>
-<b>Average Package:</b> 7 LPA
-</div>
-`,
-
-Mechanical: `
-<h3>Mechanical Engineering</h3>
-
-<div class="lab">Thermodynamics Lab</div>
-<div class="lab">Fluid Mechanics Lab</div>
-<div class="lab">CAD/CAM Lab</div>
-
+Mechanical: `<h3>Mechanical</h3>
+<div class="lab">Thermo Lab</div>
 <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc" width="100%">
+<p>Mechanical deals with machines.</p>`,
 
-<div class="tag">Faculty Members</div>
-
-<p>
-Mechanical Engineering deals with machines and manufacturing.
-Students learn design and production techniques.
-Labs include advanced machinery.
-Placement companies include Tata and Mahindra.
-Faculty supports technical development.
-</p>
-
-<div class="container">
-<b>Total Seats:</b> 120 <br>
-<b>Placement:</b> 80% <br>
-<b>Average Package:</b> 5 LPA
-</div>
-`,
-
-Civil: `
-<h3>Civil Engineering</h3>
-
+Civil: `<h3>Civil</h3>
 <div class="lab">Structure Lab</div>
-<div class="lab">Survey Lab</div>
-<div class="lab">Material Testing Lab</div>
-
 <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" width="100%">
-
-<div class="tag">Faculty Members</div>
-
-<p>
-Civil Engineering focuses on infrastructure and construction.
-Students learn structural design and project management.
-Field work is important part.
-Placement includes construction companies.
-</p>
-
-<div class="container">
-<b>Total Seats:</b> 120 <br>
-<b>Placement:</b> 75% <br>
-<b>Average Package:</b> 4 LPA
-</div>
-`,
-
-Electrical: `
-<h3>Electrical Engineering</h3>
-
-<div class="lab">Power System Lab</div>
-<div class="lab">Control System Lab</div>
-<div class="lab">Machine Lab</div>
-
-<img src="https://images.unsplash.com/photo-1581091012184-5c7f9c4e4a44" width="100%">
-
-<div class="tag">Faculty Members</div>
-
-<p>
-Electrical Engineering focuses on power and electronics.
-Students learn circuits and machines.
-Labs are well equipped.
-Placement includes electrical companies.
-</p>
-
-<div class="container">
-<b>Total Seats:</b> 120 <br>
-<b>Placement:</b> 78% <br>
-<b>Average Package:</b> 4.5 LPA
-</div>
-`
+<p>Civil deals with construction.</p>`
 };
 
     document.getElementById("branchTitle").innerText = branch;
@@ -244,39 +137,58 @@ Placement includes electrical companies.
 
 <body onload="showPage('home')">
 
+<!-- HEADER -->
 <div class="header">
-<img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Dharmsinh_Desai_University_logo.png">
+<div class="logo">DDU</div>
 <h2>Dharmsinh Desai University</h2>
 </div>
 
+<!-- NAV -->
 <nav>
 <a onclick="showPage('home')">Home</a>
 <a onclick="showPage('branchPage')">Admissions</a>
 <a onclick="showPage('contact')">Contact</a>
 </nav>
 
+<!-- HOME -->
 <section id="home">
 <div class="container">
-<h2>Student Registration</h2>
+
+<h2>Student Registration Form</h2>
 
 <form onsubmit="submitForm(event)">
+
 <input id="name" type="text" placeholder="Full Name" required><br>
 <input type="email" placeholder="Email" required><br>
+<input type="tel" placeholder="Mobile Number" required><br>
 
-<select>
-<option>Select Branch</option>
+<input type="date" required><br>
+
+<select required>
+<option value="">Gender</option>
+<option>Male</option>
+<option>Female</option>
+</select><br>
+
+<select required>
+<option value="">Select Branch</option>
 <option>IT</option>
 <option>CE</option>
 <option>Mechanical</option>
 <option>Civil</option>
-<option>Electrical</option>
 </select><br>
 
+<input type="text" placeholder="City" required><br>
+<input type="text" placeholder="State" required><br>
+
 <input type="submit" value="Register">
+
 </form>
+
 </div>
 </section>
 
+<!-- BRANCH -->
 <section id="branchPage">
 <div class="container">
 <h2 id="welcome"></h2>
@@ -285,10 +197,10 @@ Placement includes electrical companies.
 <button onclick="showBranch('CE')">CE</button>
 <button onclick="showBranch('Mechanical')">Mechanical</button>
 <button onclick="showBranch('Civil')">Civil</button>
-<button onclick="showBranch('Electrical')">Electrical</button>
 </div>
 </section>
 
+<!-- DETAILS -->
 <section id="details">
 <div class="container">
 <h2 id="branchTitle"></h2>
@@ -297,6 +209,7 @@ Placement includes electrical companies.
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
 <div class="container">
 <h2>Contact</h2>
