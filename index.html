@@ -1,23 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DDU Info Portal</title>
+<title>DDU Admission Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: Arial, sans-serif;
     background: #f4f4f4;
 }
 
-nav {
+/* HEADER */
+.header {
     background: #ff6a00;
-    padding: 15px;
-    text-align: center;
     color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header img {
+    width: 70px;
+    margin-right: 15px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+/* NAVBAR */
+nav {
+    background: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
     font-weight: bold;
 }
 
@@ -30,17 +54,19 @@ section { display: none; padding: 30px; }
     border-radius: 10px;
     width: 85%;
     margin: auto;
-    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-h1, h2 { color: #ff6a00; }
+h2 {
+    color: #ff6a00;
+}
 
 input, select, textarea {
     padding: 10px;
     margin: 6px;
     width: 240px;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 input[type="submit"] {
@@ -52,21 +78,18 @@ input[type="submit"] {
 
 button {
     padding: 10px;
-    margin: 6px;
+    margin: 5px;
     background: #ff6a00;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
 }
 
 .info-box {
     background: #fff7f0;
     padding: 15px;
     border-left: 5px solid #ff6a00;
-    border-radius: 8px;
     margin-bottom: 20px;
-    text-align: left;
 }
 
 .bar {
@@ -79,24 +102,16 @@ button {
 <script>
 
 let studentName = "";
-let selectedBranch = "";
 
 function showPage(id) {
-    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
 
-function submitForm(event) {
-    event.preventDefault();
-
+function submitForm(e) {
+    e.preventDefault();
     studentName = document.getElementById("name").value;
-    selectedBranch = document.getElementById("branch").value;
-
-    document.getElementById("welcome").innerText =
-        "Welcome, " + studentName + " (" + selectedBranch + ")";
-
-    alert("Registration Successful!");
-
+    document.getElementById("welcome").innerText = "Welcome, " + studentName;
     showPage('branchPage');
 }
 
@@ -107,63 +122,79 @@ function showBranch(branch) {
 
 IT: `
 <h3>Overview</h3>
-Information Technology focuses on software & cybersecurity.
+Focuses on software, cybersecurity & cloud computing.
 
 <h3>Seats</h3>
 150
 
 <h3>Placement</h3>
-Avg: 6 LPA
+6 LPA Avg
 
-<h3>Chart</h3>
 TCS<div class="bar" style="width:90%"></div>
 Infosys<div class="bar" style="width:80%"></div>
 `,
 
 CE: `
 <h3>Overview</h3>
-Computer Engineering focuses on AI & programming.
+Programming, AI & system design.
 
 <h3>Seats</h3>
 180
 
 <h3>Placement</h3>
-Avg: 8 LPA
+8 LPA Avg
+`,
 
-<h3>Chart</h3>
-TCS<div class="bar" style="width:85%"></div>
+ICT: `
+<h3>Overview</h3>
+Combination of IT & communication.
+
+<h3>Seats</h3>
+60
 `,
 
 Mechanical: `
 <h3>Overview</h3>
-Mechanical Engineering deals with machines.
+Machines & manufacturing.
 
 <h3>Seats</h3>
 120
-
-<h3>Placement</h3>
-Avg: 5 LPA
-
-<h3>Chart</h3>
-Tata<div class="bar" style="width:80%"></div>
 `,
 
 Civil: `
 <h3>Overview</h3>
-Civil Engineering deals with construction.
+Construction & infrastructure.
 
 <h3>Seats</h3>
 120
+`,
 
-<h3>Placement</h3>
-Avg: 4 LPA
+Electrical: `
+<h3>Overview</h3>
+Power systems & circuits.
 
-<h3>Chart</h3>
-L&T<div class="bar" style="width:75%"></div>
+<h3>Seats</h3>
+120
+`,
+
+Electronics: `
+<h3>Overview</h3>
+Communication & embedded systems.
+
+<h3>Seats</h3>
+60
+`,
+
+Chemical: `
+<h3>Overview</h3>
+Industrial chemical processes.
+
+<h3>Seats</h3>
+120
 `
 };
 
-    document.getElementById("branchTitle").innerText = branch;
+    document.getElementById("branchTitle").innerText = branch + " Engineering";
     document.getElementById("branchDesc").innerHTML = data[branch];
 }
 
@@ -172,41 +203,49 @@ L&T<div class="bar" style="width:75%"></div>
 
 <body onload="showPage('home')">
 
-<nav>DDU Portal</nav>
+<!-- HEADER -->
+<div class="header">
+<img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Dharmsinh_Desai_University_logo.png">
+<h1>Dharmsinh Desai University - Admission Portal</h1>
+</div>
+
+<nav>
+<a href="#" onclick="showPage('home')">Home</a>
+</nav>
 
 <!-- HOME -->
 <section id="home">
 <div class="container">
 
-<h1>Student Registration</h1>
+<h2>Student Registration Form</h2>
 
 <form onsubmit="submitForm(event)">
 <input type="text" id="name" placeholder="Full Name" required><br>
-<input type="text" placeholder="Father's Name" required><br>
+<input type="text" placeholder="Father Name" required><br>
 <input type="date" required><br>
 
 <select required>
 <option>Gender</option>
 <option>Male</option>
 <option>Female</option>
-<option>Other</option>
 </select><br>
 
 <input type="email" placeholder="Email" required><br>
-<input type="tel" placeholder="Mobile Number" required><br>
+<input type="tel" placeholder="Mobile" required><br>
 
-<textarea placeholder="Address" required></textarea><br>
+<textarea placeholder="Address"></textarea><br>
 
-<select id="branch" required>
+<select required>
 <option>Select Branch</option>
 <option>IT</option>
 <option>CE</option>
+<option>ICT</option>
 <option>Mechanical</option>
 <option>Civil</option>
+<option>Electrical</option>
+<option>Electronics</option>
+<option>Chemical</option>
 </select><br>
-
-<input type="number" placeholder="12th %" required><br>
-<input type="number" placeholder="Entrance Rank" required><br>
 
 <input type="submit" value="Register">
 </form>
@@ -218,19 +257,23 @@ L&T<div class="bar" style="width:75%"></div>
 <section id="branchPage">
 <div class="container">
 
-<h1 id="welcome"></h1>
+<h2 id="welcome"></h2>
 
 <div class="info-box">
-<b>Dharmsinh Desai University</b><br>
-Top engineering university with strong placement record.
+<b>About University:</b><br>
+Dharmsinh Desai University (DDU), Nadiad is known for engineering excellence, research and placements.
 </div>
 
-<h2>Explore Branches</h2>
+<h2>Available Branches</h2>
 
 <button onclick="showBranch('IT')">IT</button>
 <button onclick="showBranch('CE')">CE</button>
+<button onclick="showBranch('ICT')">ICT</button>
 <button onclick="showBranch('Mechanical')">Mechanical</button>
 <button onclick="showBranch('Civil')">Civil</button>
+<button onclick="showBranch('Electrical')">Electrical</button>
+<button onclick="showBranch('Electronics')">Electronics</button>
+<button onclick="showBranch('Chemical')">Chemical</button>
 
 </div>
 </section>
@@ -239,7 +282,7 @@ Top engineering university with strong placement record.
 <section id="details">
 <div class="container">
 
-<h1 id="branchTitle"></h1>
+<h2 id="branchTitle"></h2>
 <div id="branchDesc" class="info-box"></div>
 
 <button onclick="showPage('branchPage')">⬅ Back</button>
