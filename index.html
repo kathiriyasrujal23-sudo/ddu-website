@@ -8,6 +8,7 @@
 <style>
 body { margin:0; font-family:Arial; background:#f4f4f4; }
 
+/* HEADER */
 .header {
     background:#ff6a00;
     color:white;
@@ -17,6 +18,7 @@ body { margin:0; font-family:Arial; background:#f4f4f4; }
 }
 .header img { width:60px; margin-right:15px; }
 
+/* NAVBAR */
 nav {
     background:#222;
     padding:10px;
@@ -26,14 +28,18 @@ nav a {
     color:white;
     margin:10px;
     text-decoration:none;
+    cursor:pointer;
 }
+nav a:hover { color:orange; }
 
+/* NOTICE */
 .notice {
     background:#fff3cd;
     padding:8px;
     font-weight:bold;
 }
 
+/* SECTIONS */
 section { display:none; padding:30px; }
 .active { display:block; }
 
@@ -56,6 +62,7 @@ button, input[type=submit] {
     color:white;
     border:none;
     padding:10px;
+    cursor:pointer;
 }
 
 .info-box {
@@ -85,97 +92,46 @@ function showBranch(branch){
 
     let data = {
 
-IT: `... (shortened here for display but KEEP full IT content from previous message)`,
+IT: `
+<h3>Information Technology Engineering</h3>
+Information Technology is one of the fastest growing fields in modern world.
+It focuses on software development, cybersecurity and cloud computing.
+Students learn programming languages like Java, Python and C++.
+The course includes data structures, web development and AI basics.
+Total intake is around 150 students.
+Strong placement support is available.
+Top recruiters include TCS, Infosys, Wipro.
+Average package ranges from 5–8 LPA.
+Students get internship opportunities.
+Career options include software developer and data analyst.
+`,
 
 CE: `
 <h3>Computer Engineering</h3>
-Computer Engineering focuses on software development, hardware integration, and advanced computing systems.
-It includes programming, artificial intelligence, and machine learning technologies.
-Students learn languages like C, Java, Python and system-level concepts.
-The course structure is designed according to industry needs.
-Laboratory work and real-world projects are an important part.
+Computer Engineering focuses on programming and AI technologies.
+Students learn system design and machine learning.
 Total intake is around 180 students.
-Placement is excellent with top IT companies visiting campus.
-Average package ranges between 6–10 LPA.
-Career options include software engineer, AI engineer, system architect.
-Higher studies options are also available.
-Students also participate in hackathons and coding competitions.
-Department promotes research and innovation.
-It is one of the most demanded branches.
-Provides global career opportunities.
-Strong technical foundation is built.
-Students develop logical thinking and problem-solving skills.
-Industry exposure is provided through internships.
-Overall, CE is best for tech lovers.
+Placement is excellent.
+Average package 6–10 LPA.
+Career includes software engineer and AI engineer.
 `,
 
 Mechanical: `
 <h3>Mechanical Engineering</h3>
-Mechanical Engineering deals with machines, manufacturing, and production systems.
-Subjects include thermodynamics, fluid mechanics, and robotics.
-Students gain knowledge of design and analysis.
-Hands-on practical training is provided.
-Total seats approx 120.
-Placement includes companies like Tata, Mahindra.
+Deals with machines and manufacturing.
+Subjects include thermodynamics and robotics.
+Placement includes Tata and Mahindra.
 Average package 4–6 LPA.
-Career options include design engineer, production engineer.
-Higher studies also possible.
-Lab facilities are modern.
-Industry visits arranged.
-Focus on core engineering.
-Research opportunities available.
-Students develop analytical skills.
-Very broad field.
-Scope in government and private sector.
+Career includes design engineer.
 `,
 
 Civil: `
 <h3>Civil Engineering</h3>
-Civil Engineering focuses on infrastructure development like roads, bridges, and buildings.
-Subjects include structural engineering and environmental engineering.
-Students learn construction planning and design.
-Total seats around 120.
-Placement includes L&T and govt projects.
+Focuses on construction and infrastructure.
+Subjects include structural engineering.
+Placement includes L&T.
 Average package 3–5 LPA.
-Career options include site engineer, structural engineer.
-Field work exposure is provided.
-Lab and survey practice included.
-High demand in infrastructure sector.
-Core branch with stability.
-Government jobs opportunity high.
-`,
-
-Electrical: `
-<h3>Electrical Engineering</h3>
-Focuses on power systems and electrical circuits.
-Subjects include machines, power systems.
-Placement average 4–6 LPA.
-Career options include electrical engineer.
-Scope in industries and govt sector.
-`,
-
-Electronics: `
-<h3>Electronics Engineering</h3>
-Focuses on communication and embedded systems.
-Subjects include microprocessors and VLSI.
-Placement average 4–7 LPA.
-Career includes embedded engineer.
-`,
-
-Chemical: `
-<h3>Chemical Engineering</h3>
-Deals with chemical processes and industries.
-Subjects include thermodynamics and process control.
-Placement average 4–6 LPA.
-Career includes process engineer.
-`,
-
-ICT: `
-<h3>ICT Engineering</h3>
-Combination of IT and communication technologies.
-Subjects include networking and communication.
-Placement average 4–7 LPA.
-Career includes network engineer.
+Career includes site engineer.
 `
 };
 
@@ -188,22 +144,25 @@ Career includes network engineer.
 
 <body onload="showPage('home')">
 
+<!-- HEADER -->
 <div class="header">
 <img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Dharmsinh_Desai_University_logo.png">
 <h2>Dharmsinh Desai University - Admission Portal</h2>
 </div>
 
+<!-- NAVBAR -->
 <nav>
-<a href="#">Home</a>
-<a href="#">Admissions</a>
-<a href="#">Departments</a>
-<a href="#">Placements</a>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('branchPage')">Admissions</a>
+<a onclick="showPage('contact')">Contact</a>
 </nav>
 
+<!-- NOTICE -->
 <div class="notice">
-<marquee>Admissions Open | Apply Now | Excellent Placement Record</marquee>
+<marquee>Admissions Open | Apply Now | Strong Placement Record</marquee>
 </div>
 
+<!-- HOME -->
 <section id="home">
 <div class="container">
 
@@ -211,19 +170,7 @@ Career includes network engineer.
 
 <form onsubmit="submitForm(event)">
 <input id="name" type="text" placeholder="Full Name" required><br>
-<input type="text" placeholder="Father Name" required><br>
-<input type="date" required><br>
-
-<select>
-<option>Gender</option>
-<option>Male</option>
-<option>Female</option>
-</select><br>
-
-<input type="email" placeholder="Email"><br>
-<input type="tel" placeholder="Mobile"><br>
-
-<textarea placeholder="Address"></textarea><br>
+<input type="email" placeholder="Email" required><br>
 
 <select>
 <option>Select Branch</option>
@@ -231,10 +178,6 @@ Career includes network engineer.
 <option>CE</option>
 <option>Mechanical</option>
 <option>Civil</option>
-<option>Electrical</option>
-<option>Electronics</option>
-<option>Chemical</option>
-<option>ICT</option>
 </select><br>
 
 <input type="submit" value="Register">
@@ -243,6 +186,7 @@ Career includes network engineer.
 </div>
 </section>
 
+<!-- BRANCH -->
 <section id="branchPage">
 <div class="container">
 
@@ -256,21 +200,34 @@ Dharmsinh Desai University is a leading engineering institute with strong academ
 <button onclick="showBranch('CE')">CE</button>
 <button onclick="showBranch('Mechanical')">Mechanical</button>
 <button onclick="showBranch('Civil')">Civil</button>
-<button onclick="showBranch('Electrical')">Electrical</button>
-<button onclick="showBranch('Electronics')">Electronics</button>
-<button onclick="showBranch('Chemical')">Chemical</button>
-<button onclick="showBranch('ICT')">ICT</button>
 
 </div>
 </section>
 
+<!-- DETAILS -->
 <section id="details">
 <div class="container">
 
 <h2 id="branchTitle"></h2>
 <div id="branchDesc" class="info-box"></div>
 
-<button onclick="showPage('branchPage')">Back</button>
+<button onclick="showPage('branchPage')">⬅ Back</button>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+
+<h2>Contact Us</h2>
+
+<div class="info-box">
+Dharmsinh Desai University<br>
+Nadiad, Gujarat<br>
+Email: info@ddu.ac.in<br>
+Phone: +91 1234567890
+</div>
 
 </div>
 </section>
